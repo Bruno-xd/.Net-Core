@@ -1,0 +1,66 @@
+﻿@model Trabajador
+@{
+    ViewData["Title"] = "Guardar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Crear Trabajador
+    </div>
+    <div class="card-body">
+        <form asp-action="Guardar" asp-controller="Trabajador" method="post">
+            <div class="mb-3">
+                <label class="form-label">Tipo de Documento</label>
+                <select asp-for="TipoDocumento" class="form-control">
+                    <option value="DNI" selected>DNI</option>
+                    <option value="RUC">RUC</option>
+                </select>
+                <span asp-validation-for="TipoDocumento" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Número de Documento</label>
+                <input asp-for="NumDocumento" type="text" class="form-control">
+                <span asp-validation-for="NumDocumento" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Nombres</label>
+                <input asp-for="Nombres" type="text" class="form-control">
+                <span asp-validation-for="Nombres" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Sexo</label>
+                <select asp-for="Sexo" class="form-control">
+                    <option value="M" selected>Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+                <span asp-validation-for="Sexo" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Departamento</label>
+                <select asp-for="IdDepartamento" asp-items="@ViewBag.Departamentos" class="form-control">
+                    <option value="">Selecciona un departamento</option>
+                </select>
+                <span asp-validation-for="IdDepartamento" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Provincia</label>
+                <select asp-for="IdProvincia" asp-items="@ViewBag.Provincias" class="form-control">
+                    <option value="">Cargando</option>
+                </select>
+                <span asp-validation-for="IdProvincia" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Distrito</label>
+                <select asp-for="IdDistrito" asp-items="@ViewBag.Distritos" class="form-control">
+                    <option value="">Cargando</option>
+                </select>
+                <span asp-validation-for="IdDistrito" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a asp-action="Listar" asp-controller="Trabajador" class="btn btn-warning">Volver a la lista</a>
+        </form>
+    </div>
+</div>
+
+

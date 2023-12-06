@@ -1,0 +1,60 @@
+﻿@model Trabajador
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Modificar Trabajador
+    </div>
+    <div class="card-body">
+        <form asp-action="Editar" asp-controller="Trabajador" method="post">
+            <input asp-for="IdTrabajador" type="hidden" class="form-control">
+            <div class="mb-3">
+                <label class="form-label">Tipo de Documento</label>
+                <select asp-for="TipoDocumento" class="form-control">
+                    <option value="DNI" selected>DNI</option>
+                    <option value="RUC">RUC</option>
+                </select>
+                <span asp-validation-for="TipoDocumento" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Número de Documento</label>
+                <input asp-for="NumDocumento" type="text" class="form-control">
+                <span asp-validation-for="NumDocumento" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Nombres</label>
+                <input asp-for="Nombres" type="text" class="form-control">
+                <span asp-validation-for="Nombres" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Sexo</label>
+                <select asp-for="Sexo" class="form-control">
+                    <option value="M" selected>Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+                <span asp-validation-for="Sexo" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ID Departamento</label>
+                <input asp-for="IdDepartamento" type="text" class="form-control">
+                <span asp-validation-for="IdDepartamento" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ID Provincia</label>
+                <input asp-for="IdProvincia" type="text" class="form-control">
+                <span asp-validation-for="IdProvincia" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ID Distrito</label>
+                <input asp-for="IdDistrito" type="text" class="form-control">
+                <span asp-validation-for="IdDistrito" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a asp-action="Listar" asp-controller="Trabajador" class="btn btn-warning">Volver a la lista</a>
+        </form>
+    </div>
+</div>
+

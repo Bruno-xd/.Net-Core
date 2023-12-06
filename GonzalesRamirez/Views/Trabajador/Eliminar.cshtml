@@ -1,0 +1,29 @@
+﻿@model Trabajador
+@{
+    ViewData["Title"] = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Eliminar Contacto
+    </div>
+    <div class="card-body">
+
+
+        <form asp-action="Eliminar" asp-controller="Trabajador" method="post">
+
+            <input asp-for="IdTrabajador" type="hidden" class="form-control">
+
+            <div class="alert alert-danger" role="alert">
+                ¿Está seguro de eliminar a : @Html.DisplayTextFor(m => m.Nombres) ?
+            </div>
+
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a asp-action="Listar" asp-controller="Trabajador" class="btn btn-warning">Volver a la lista</a>
+        </form>
+
+
+    </div>
+</div>
+
