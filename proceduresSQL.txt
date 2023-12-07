@@ -1,0 +1,121 @@
+create procedure sp_ListarDepartamento
+as
+begin
+	select * from dbo.Departamento
+end
+--
+create procedure sp_ListarProvincia
+as
+begin
+	select * from dbo.Provincia
+end
+--
+create procedure sp_ListarDistrito
+as
+begin
+	select * from dbo.Distrito
+end
+--
+create procedure sp_ListarTrabajadores
+as
+begin
+	select * from dbo.Trabajadores
+end
+--
+CREATE PROCEDURE sp_ObtenerNombreDepartamento
+    @IdDepartamento INT
+AS
+BEGIN
+    SELECT NombreDepartamento
+    FROM dbo.Departamento
+    WHERE Id = @IdDepartamento;
+END;
+--
+CREATE PROCEDURE sp_ObtenerNombreProvincia
+    @IdProvincia INT
+AS
+BEGIN
+    SELECT NombreProvincia
+    FROM dbo.Provincia
+    WHERE Id = @IdProvincia;
+END;
+--
+CREATE PROCEDURE sp_ObtenerTrabajador
+    @IdTrabajador INT
+AS
+BEGIN
+    SELECT
+        Id,
+        TipoDocumento,
+        NumeroDocumento,
+        Nombres,
+        Sexo,
+        IdDepartamento,
+		IdProvincia,
+        IdDistrito
+    FROM dbo.Trabajadores
+    WHERE Id = @IdTrabajador;
+END;
+--
+CREATE PROCEDURE sp_GuardarTrabajador
+    @TipoDocumento NVARCHAR(50),
+    @NumDocumento NVARCHAR(50),
+    @Nombres NVARCHAR(100),
+    @Sexo NVARCHAR(10),
+    @IdDepartamento INT,
+    @IdProvincia INT,
+    @IdDistrito INT
+AS
+BEGIN
+    INSERT INTO Trabajadores (TipoDocumento, NumeroDocumento, Nombres, Sexo, IdDepartamento, IdProvincia, IdDistrito)
+    VALUES (@TipoDocumento, @NumDocumento, @Nombres, @Sexo, @IdDepartamento, @IdProvincia, @IdDistrito);
+END;
+--
+CREATE PROCEDURE sp_EditarTrabajador
+    @IdTrabajador INT,
+    @TipoDocumento NVARCHAR(50),
+    @NumDocumento NVARCHAR(50),
+    @Nombres NVARCHAR(100),
+    @Sexo NVARCHAR(10),
+    @IdDepartamento INT,
+    @IdProvincia INT,
+    @IdDistrito INT
+AS
+BEGIN
+    UPDATE dbo.Trabajadores
+    SET
+        TipoDocumento = @TipoDocumento,
+        NumeroDocumento = @NumDocumento,
+        Nombres = @Nombres,
+        Sexo = @Sexo,
+        IdDepartamento = @IdDepartamento,
+        IdProvincia = @IdProvincia,
+        IdDistrito = @IdDistrito
+    WHERE Id = @IdTrabajador;
+END;
+--
+CREATE PROCEDURE sp_EliminarTrabajador
+    @IdTrabajador INT
+AS
+BEGIN
+    DELETE FROM dbo.Trabajadores
+    WHERE Id = @IdTrabajador;
+END;
+--
+CREATE PROCEDURE sp_ListarProvinciaPorDepartamento
+    @IdDepartamento INT
+AS
+BEGIN
+    SELECT Id, NombreProvincia
+    FROM dbo.Provincia
+    WHERE IdDepartamento = @IdDepartamento;
+END;
+--
+CREATE PROCEDURE sp_ListarDistritoPorProvincia
+    @IdProvincia INT
+AS
+BEGIN
+    SELECT Id, NombreDistrito
+    FROM Distrito
+    WHERE IdProvincia = @IdProvincia;
+END;
