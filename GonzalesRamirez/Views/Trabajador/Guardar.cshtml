@@ -38,21 +38,21 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Departamento</label>
-                <select asp-for="IdDepartamento" asp-items="@ViewBag.Departamentos" class="form-control">
+                <select asp-for="IdDepartamento" asp-items="@ViewBag.Departamentos" class="form-control" id="IdDepartamento">
                     <option value="">Selecciona un departamento</option>
                 </select>
                 <span asp-validation-for="IdDepartamento" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label class="form-label">Provincia</label>
-                <select asp-for="IdProvincia" asp-items="@ViewBag.Provincias" class="form-control">
+                <select asp-for="IdProvincia" asp-items="@ViewBag.Provincias" class="form-control" id="IdProvincia">
                     <option value="">Cargando</option>
                 </select>
                 <span asp-validation-for="IdProvincia" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label class="form-label">Distrito</label>
-                <select asp-for="IdDistrito" asp-items="@ViewBag.Distritos" class="form-control">
+                <select asp-for="IdDistrito" asp-items="@ViewBag.Distritos" class="form-control" id="IdDistrito">
                     <option value="">Cargando</option>
                 </select>
                 <span asp-validation-for="IdDistrito" class="text-danger"></span>
@@ -62,5 +62,49 @@
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        function cargarProvincias() {
+            var idDepartamento = $("#IdDepartamento").val();
+
+            $.ajax({
+                type: "POST",
+                url: "/Trabajador/ObtenerProvincias",
+                data: { idDepartamento: idDepartamento },
+                success: function (data) {
+                    $("#IdProvincia").empty(); 
+                    $.each(data, function (index, item) {
+                        $("#IdProvincia").append("<option value='" + item.idProvincia + "'>" + item.nombreProvincia + "</option>");
+                    });
+                    cargarDistritos(); 
+                }
+            });
+        }
+
+        function cargarDistritos() {
+            var idProvincia = $("#IdProvincia").val();
+
+            $.ajax({
+                type: "POST",
+                url: "/Trabajador/ObtenerDistritos",
+                data: { idProvincia: idProvincia },
+                success: function (data) {
+                    $("#IdDistrito").empty();
+                    $.each(data, function (index, item) {
+                        $("#IdDistrito").append("<option value='" + item.idDistrito + "'>" + item.nombreDistrito + "</option>");
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $("#IdDepartamento").change(cargarProvincias);
+            $("#IdProvincia").change(cargarDistritos);
+
+            cargarProvincias();
+        });
+    </script>
+}
 
 

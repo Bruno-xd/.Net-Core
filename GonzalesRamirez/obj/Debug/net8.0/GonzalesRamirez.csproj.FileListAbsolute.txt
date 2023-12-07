@@ -537,3 +537,4 @@ C:\Cibertec\net\GonzalesRamirez\GonzalesRamirez\obj\Debug\net8.0\refint\Gonzales
 C:\Cibertec\net\GonzalesRamirez\GonzalesRamirez\obj\Debug\net8.0\GonzalesRamirez.pdb
 C:\Cibertec\net\GonzalesRamirez\GonzalesRamirez\obj\Debug\net8.0\GonzalesRamirez.genruntimeconfig.cache
 C:\Cibertec\net\GonzalesRamirez\GonzalesRamirez\obj\Debug\net8.0\ref\GonzalesRamirez.dll
+C:\Cibertec\net\GonzalesRamirez\GonzalesRamirez\obj\Debug\net8.0\GonzalesRamirez.sourcelink.json

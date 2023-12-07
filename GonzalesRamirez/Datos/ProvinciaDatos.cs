@@ -36,5 +36,34 @@ namespace GonzalesRamirez.Datos
 
             return oLista;
         }
+
+        public List<Provincia> ListarPorDepartamento(int idDepartamento)
+        {
+            var oLista = new List<Provincia>();
+
+            var cn = new Conexion();
+
+            using (var conexion = new SqlConnection(cn.getCadenaSQL()))
+            {
+                conexion.Open();
+                SqlCommand cmd = new SqlCommand("sp_ListarProvinciaPorDepartamento", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdDepartamento", idDepartamento);
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        oLista.Add(new Provincia()
+                        {
+                            IdProvincia = Convert.ToInt32(dr["Id"]),
+                            NombreProvincia = dr["NombreProvincia"].ToString()
+                        });
+                    }
+                }
+            }
+
+            return oLista;
+        }
     }
 }

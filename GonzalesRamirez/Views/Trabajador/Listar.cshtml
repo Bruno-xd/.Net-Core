@@ -10,6 +10,17 @@
     </div>
     <div class="card-body">
         <a asp-action="Guardar" asp-controller="Trabajador" class="btn btn-success"><i class="bi bi-plus-circle"></i> Crear Nuevo</a>
+
+        <form method="get" action="@Url.Action("ListarConFiltroSexo")" class="mb-3">
+            <label>Filtrar por Sexo:</label>
+            <select name="filtroSexo">
+                <option value="">Todos</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </form>
+
         <hr />
         <table class="table table-bordered">
             <thead>
